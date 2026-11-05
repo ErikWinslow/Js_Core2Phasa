@@ -544,6 +544,8 @@ console.log (Count ("ABCDIOUE") )
 
 // taks 26
 
+/*
+
 function FirstSymbolUpperCase (text) {
 
    let new_arr = [] , words = text.split(" ");
@@ -563,3 +565,98 @@ function FirstSymbolUpperCase (text) {
 }
 
 console.log (FirstSymbolUpperCase ("hello from yerevan") )
+
+*/
+
+// ========================================================================================================================================================
+
+
+// taks 27
+
+/*
+
+function reverseWord (text) {
+
+  let new_arr = []  , words = text.split(" ");
+
+   for (let i = 0 ; i < text.length ; ++i) {
+
+    let word = words[i] ;
+
+      new_arr.push(word)
+
+   }
+
+   let new_string = new_arr.reverse().join(" ").trim();
+
+   return new_string ;
+
+
+}
+
+console.log (reverseWord ("I Love JS"))
+
+*/
+
+
+// ========================================================================================================================================================
+
+
+// taks 28
+
+/*
+
+console.log(Math.round(2.5)); // ktpi 3 qani vor ays method@ veradarznume kloracvac tiv iran motiki
+console.log(Math.round(-2.5)); // -2.5 depqum k kloracni -2
+console.log(Math.floor(-2.5)); // ays method@ kveradarzni hakarak@ 3 tiv@
+console.log(Math.ceil(-2.5)); // cuyc kta -2 qani vor ays method@ evs kloracnume tiv@
+console.log(Math.trunc(-2.5)); // ays method-nel nunpes kloracnume kstananq -2
+
+*/
+
+// ========================================================================================================================================================
+
+
+// taks 29
+
+// console.log(parseInt("42px")); // ksaqri 42 isk px kjnji
+// console.log(parseInt("px42"));// NaN qani vor parseInt tesankyunits petqe arajn@ tiv ga bayc ays depqqum galis e tar
+// console.log(parseFloat("3.14.15")); // indz tvume kveradarzni 3.14
+// console.log(Number("42px")); // NaN qani vor Number chi karox poxel tar@ tvi
+// console.log(parseInt("0x1A")); // sarqelu e tasnvecakan hamakargi tiv
+
+
+
+// ========================================================================================================================================================
+
+
+// taks 30
+
+/*
+
+console.log((1.005).toFixed(2)); // 1.00 qani vor na vekalelu e ketic heto arajin 2 tiv@
+console.log((12.345).toFixed(1)); // nuyn logikan vekalelu ketic heto arajin tiv@
+console.log(typeof (5).toFixed(2)); // veradarznelu Number qani vor JS bolor tarberaki tver@ Number type-en
+
+*/
+
+
+// ========================================================================================================================================================
+
+
+// taks 31
+
+/*
+
+console.log(Number.isInteger(5.0)); // true qani vor sa Integer tipie bayc float e
+console.log(Number.isInteger("5")); // false qani vor ays tiv@ nerkayacvace vorpes string
+console.log(isNaN("abc")); // true qani vor iroqic ays tver@ tar chen
+console.log(Number.isNaN("abc")); // false qani vor ays tarer@ tiv chen nerkayacnum irencic
+
+*/
+
+// ========================================================================================================================================================
+
+
+// taks 32
+
