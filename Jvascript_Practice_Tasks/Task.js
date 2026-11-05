@@ -473,3 +473,93 @@ do {
 
 
 // taks 24
+
+/*
+
+function isPalindromeWord (word) {
+
+  let original_word = word.toLowerCase() , new_word = [] ;
+
+    for (let i = word.length - 1 ; i >= 0 ; i--) {
+  
+        new_word.push(original_word[i])
+
+    }
+
+   let reversed_word = new_word.join("")
+   
+    if (original_word === reversed_word) {
+
+      return true;
+
+    } else {
+
+      return false;
+
+    }
+
+
+}
+
+console.log (isPalindromeWord ("Level") ); 
+
+*/
+
+// ========================================================================================================================================================
+
+
+// taks 25
+
+/*
+
+function Count (text) {
+
+   let count = 0 ;
+
+     let toLowercase =  text.toLowerCase() ;
+
+     for (let i = 0 ; i < text.length ; ++i) {
+ 
+      if (toLowercase[i] === "a" || toLowercase[i] === "e" || toLowercase[i] === "i" ||
+         
+          toLowercase[i] === "o" || toLowercase[i] === "u") {
+
+             count++ ;
+      }
+
+   
+    }
+
+   return count ;
+
+
+}
+
+console.log (Count ("ABCDIOUE") )
+
+*/
+
+// ========================================================================================================================================================
+
+
+// taks 26
+
+function FirstSymbolUpperCase (text) {
+
+   let new_arr = [] , words = text.split(" ");
+
+    for (let i = 0 ; i < words.length ; ++i) {
+
+      let word = words[i] ;
+
+      let UpperCaseWord = word.charAt(0).toUpperCase() + word.slice(1);
+
+      new_arr.push(UpperCaseWord)
+
+    }
+    
+    return new_arr.join(" ");
+
+}
+
+console.log (FirstSymbolUpperCase ("hello from yerevan") )
