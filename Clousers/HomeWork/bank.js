@@ -1,16 +1,107 @@
 // ---------- functions ----------
 
 // (owner: string, initialBalance?: number) => Account
-function createAccount(owner, initialBalance = 0) {}
+function createAccount(owner, initialBalance = 0) {   
+
+    let balance = Number.isFinite(initialBalance) ? initialBalance : 0;
+
+      const Name = owner , history = [];
+
+       const getOwner = () => Name ;
+
+         const getBalance = () => balance ;
+
+         
+
+    const deposit = (amount) => {
+
+        if (typeof amount !== "number" || !Number.isFinite(amount) || amount <= 0) return false ;
+
+        balance += amount ;
+
+        history.push({type : "deposit" , amount , balance}) ;
+
+        return true ;
+
+    }
+    const withdraw = (amount) => {
+
+      if (typeof amount !== "number" || !Number.isFinite(amount) || amount <= 0) return false ;
+
+      if (amount > balance) {return false}
+
+      balance -= amount
+
+      history.push({type : "withdraw" , amount , balance}) ;
+
+      return true ;
+
+    }
+    const getHistory = () => {
+
+        return history.map(item => ({...item}))
+
+    }
+
+
+
+         return {getOwner , getBalance , deposit , withdraw , getHistory}
+
+}
+
+// esem greeeeeeeeeeeeee!!!!!!!
 
 // (from: Account, to: Account, amount: number) => boolean
-function transfer(from, to, amount) {}
+
+function transfer(from, to, amount) {
+
+    if (from.withdraw(amount)) {
+
+      if (to.deposit(amount)) {
+
+        return true ;
+
+      } else {
+
+        from.deposit(amount) ;
+
+      }
+
+    }
+
+
+}
 
 // bonus: (accounts: Account[]) => number
-function getTotalBalance(accounts) {}
+function getTotalBalance(accounts) {
+
+   const Total = accounts.reduce((acc , currValue) => acc + currValue.getBalance() , 0) ;
+
+    return Total ;
+
+}
 
 // bonus: (accounts: Account[], percent: number) => void
-function applyInterest(accounts, percent) {}
+function applyInterest(accounts, percent) {
+
+   accounts.forEach ((account) => {
+
+      let balance = account.getBalance();
+
+      if (balance > 0) {
+
+        let Interest = Math.round(balance * percent / 100) ;
+
+        account.deposit(Interest) ;
+
+      }
+
+   })
+
+
+}
+// matemi pah@ vat patkeracreci greci ai-in bayc mnacac@ esem grel 
+
 
 // ---------- state ----------
 
@@ -24,6 +115,7 @@ function applyInterest(accounts, percent) {}
 // valid amount: finite number > 0
 
 const alice = createAccount("Alice", 1000);
+
 const bob = createAccount("Bob");
 
 // ---------- calls ----------
