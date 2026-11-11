@@ -1,19 +1,157 @@
 // ---------- functions ----------
 
 // (id: number) => Product | undefined
-function findProduct(id) {}
+function findProduct(id) {
+
+    const findprod = catalog.find(element => element.id === id) ;
+
+      return findprod ;
+     
+}
 
 // (cart: CartItem[], productId: number, qty?: number) => CartItem[]
-function addToCart(cart, productId, qty = 1) {}
+function addToCart(cart, productId, qty = 1) {
+
+    const IsSomeCatalog = catalog.some(item => item.id === productId) ;4
+
+    if (!IsSomeCatalog) {
+
+        return cart ;
+
+    }
+
+    const IsFindCart = cart.find(CartItem => CartItem.productId === productId) ;
+
+    if (IsFindCart) {
+
+        const new_Arr = cart.map(element => {
+
+            if (element.productId === productId) {
+
+                return {productId:element.productId , qty: element.qty + qty} ;
+
+            } else {
+
+                return element ;
+            }
+
+        });
+
+        return new_Arr
+
+    } else {
+
+        const new_Arr = [...cart , {productId:productId , qty:qty}] ;
+
+        return new_Arr ;
+
+    }
+
+
+}
 
 // (cart: CartItem[], productId: number, qty?: number) => CartItem[]
-function removeFromCart(cart, productId, qty = 1) {}
+function removeFromCart(cart, productId, qty = 1) {
+
+    const test = cart.find(CartItem => CartItem.productId === productId) ;
+
+    if (!test) {
+
+        return cart ;
+    }
+
+    let newQty = test.qty - qty ;
+
+    if (newQty <= 0) {
+
+        const dell_obj = cart.filter(item => item.productId !== productId) ;
+
+        return dell_obj ;
+
+
+    } else {
+
+        const new_map_arr = cart.map(element => {
+
+          if (element.productId === productId) {
+
+            return {productId:element.productId , qty:newQty} ;
+
+          } else {
+
+            return element ;
+
+          }
+
+        })
+
+        return new_map_arr ;
+
+    }
+
+
+}
 
 // (cart: CartItem[], promoCode?: string) => { subtotal, discount, delivery, total }
-function calculateTotal(cart, promoCode) {}
+function calculateTotal(cart, promoCode) {
+
+    let subtotal = 0 , discount = 0 , delivery = 0 , total = 0; 
+
+    if (cart.length === 0) {return {subtotal , discount , delivery , total} } ;
+
+        let GetTotal = cart.reduce((accumlator , curr) => {
+
+            let FindProduct = catalog.find(element => element.id === curr.productId) ;
+            
+           return accumlator + (FindProduct.price * curr.qty) ;
+
+        }, 0) ;
+
+        subtotal = GetTotal ;
+
+        if (promoCode in PROMO_CODES) {
+            
+           discount = Math.round(subtotal * PROMO_CODES[promoCode].percent / 100) ;
+
+        } else {
+
+            discount = 0 ;
+
+        } ;
+
+        if (subtotal - discount >= FREE_DELIVERY_FROM) {
+
+            delivery = 0 ;
+
+        } else {
+
+            delivery = DELIVERY_FEE ;
+
+        }
+
+        total = subtotal - discount + delivery ;
+
+
+        return {subtotal , discount , delivery , total} ;
+
+
+
+}
 
 // bonus: (cart: CartItem[]) => string[]
-function getReceipt(cart) {}
+function getReceipt(cart) {
+
+   const new_Arr = cart.map(curr => {
+
+     const NameProduct = catalog.find(item => item.id === curr.productId) ;
+     
+     return `${NameProduct.name} x${curr.qty} = ${NameProduct.price * curr.qty}` ;
+
+   })
+
+   return new_Arr ;
+
+}
 
 // ---------- state ----------
 
