@@ -46,7 +46,7 @@ function MoviesFilms (title , BillPrice , FilmGenre , raiting) {
 
 function FilmScreeningRoom (Film , Capacity , Occupiedseats) {
 
-  let sumBillPrice = 0 , CinemaSalesBill = 0;
+  let sumBillPrice = 0 ;
 
   return {
 
@@ -64,17 +64,33 @@ function FilmScreeningRoom (Film , Capacity , Occupiedseats) {
         
     },
 
+    GetAvailbleSpots () {
+
+      console.log (`This is how many seats are still available at each cinema : ${Capacity - Occupiedseats}`) ;
+
+    },
+
+    AddOccupedSeats (count) {
+
+      if (!Number.isFinite(count) || typeof count !== "number" || count <= 0) {return false} ;
+      
+      if (Occupiedseats < 0) return false ;
+
+      if (count + Occupiedseats > Capacity ) {return false} ;
+
+      console.log (`This is how many people have joined the film. ${Occupiedseats += count}`) ;
+
+    },
+
     GetSumBilletSales () {
 
-      if (!Number.isFinite(Film.BillPrice) || typeof Film.BillPrice !== "number" || Film.BillPrice <= 0) {return false} ;
+      if (!Number.isFinite(Capacity) || typeof Capacity !== "number" || Capacity <= 0) {return false} ;
 
       if (Occupiedseats > Capacity) {return false}
 
        sumBillPrice = Occupiedseats * Film.BillPrice
 
-       CinemaSalesBill = sumBillPrice ;
-
-       console.log (`Daily revenue at the cinema ${CinemaSalesBill}`) ;
+       console.log (`Daily revenue at the cinema ${sumBillPrice}`) ;
 
     },
 
@@ -94,12 +110,34 @@ const CinemaHall2 = FilmScreeningRoom(Film2 , 30 , 10)
 
 CinemaHall1.GetMovieHallInfo(Film1) ;
 
+console.log ("=================================================") ;
+
 CinemaHall2.GetMovieHallInfo(Film2) ;
+
+console.log ("=================================================") ;
 
 CinemaHall1.GetSumBilletSales() ;
 
+console.log ("=================================================") ;
+
 CinemaHall2.GetSumBilletSales() ;
+
+console.log ("=================================================") ;
 
 Film1.getInfoFilm();
 
+console.log ("=================================================") ;
+
 Film2.getInfoFilm();
+
+console.log ("=================================================") ;
+
+CinemaHall1.GetAvailbleSpots() ;
+
+console.log ("=================================================") ;
+
+CinemaHall2.GetAvailbleSpots() ;
+
+console.log ("=================================================") ;
+
+CinemaHall2.AddOccupedSeats(5) ;
