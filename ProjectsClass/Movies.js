@@ -1,6 +1,6 @@
 function MoviesFilms (title , BillPrice , FilmGenre , raiting) {
 
-    let playingFilm = true ;
+    let playingFilm = false ;
 
       return {
  
@@ -14,7 +14,7 @@ function MoviesFilms (title , BillPrice , FilmGenre , raiting) {
 
         ChangePlayingFilm () {
 
-          playingFilm = false ;
+          playingFilm = true ;
 
         },
 
@@ -40,8 +40,6 @@ function MoviesFilms (title , BillPrice , FilmGenre , raiting) {
           },
 
       }
-
-
 }
 
 function FilmScreeningRoom (Film , Capacity , Occupiedseats) {
@@ -52,13 +50,13 @@ function FilmScreeningRoom (Film , Capacity , Occupiedseats) {
 
     Film , Capacity , Occupiedseats , HallInfo: [],
 
-    GetMovieHallInfo () {       
+    GetMovieHallInfo (Movie) {       
 
-      if (!Film.isplayingFilm()) return false ;
+      if (Movie.isplayingFilm()) return false ;
 
-      this.HallInfo.push(Film)
+      this.HallInfo.push(Movie)
 
-      Film.ChangePlayingFilm() ;
+      Movie.ChangePlayingFilm() ;
 
       console.log (`Information about the cinema hall << ${ this.HallInfo.map(Movie => Movie.title).join(',') } >> How many seats in the hall are occupied? : ${Occupiedseats}`)
         
